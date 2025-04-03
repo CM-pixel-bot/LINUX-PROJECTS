@@ -1,0 +1,20 @@
+if [ -z "$1" ]; then
+  echo "Usage: $0 <directory>"
+  exit 1
+fi
+
+if [ ! -d "$1" ]; then
+  echo "Error: Directory '$1' not found."
+  exit 1
+fi
+
+archive_name="$1.tar.gz"
+
+tar -czvf "$archive_name" "$1"
+
+if [ $? -eq 0 ]; then
+  echo "Archive '$archive_name' created successfully."
+else
+  echo "Error creating archive."
+  exit 1
+fi
